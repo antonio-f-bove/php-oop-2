@@ -45,11 +45,13 @@ class User {
     $this->setDiscount();
   }
 
-  public function setDiscount() {
+  protected function setDiscount() {
     if ($this->isRegistered) $this->discount = 20;
   }
 
 }
 
-$cc = new CreditCard(1234123456785678);
+$cc = new CreditCard(1234123456785678, '01 21');
 $user = new User('anto', 'bove', $cc);
+
+echo $cc->isValid();
