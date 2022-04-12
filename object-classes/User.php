@@ -15,6 +15,7 @@ class User {
 
     try {
       $this->addPaymentMethod($_cc);
+      // echo "Credit Card successfully added to Payment Methods.";
     } catch (Exception $e) {
       echo "There has been a problem: {$e->getMessage()}<br>";
     }
@@ -27,7 +28,7 @@ class User {
 
   public function addPaymentMethod($_cred_card) {
     
-    if (!is_null($_cred_card)) throw new Exception('Credit Card not found.');
+    if (is_null($_cred_card)) throw new Exception('Credit Card not found.');
     if (!is_a($_cred_card, 'CreditCard')) throw new Exception(('Invalid Credit Card.'));
 
     $this->payment_methods[] = $_cred_card;
@@ -35,6 +36,5 @@ class User {
 
 }
 
-$user = new User('anto', 'bove');
-
-echo is_a($user, 'User');
+$cc = new CreditCard(1234123456785678);
+$user = new User('anto', 'bove', $cc);
