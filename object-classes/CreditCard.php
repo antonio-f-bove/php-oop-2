@@ -26,7 +26,7 @@ class CreditCard {
   }
 
   private function checkDateFormat($_date) {
-    if (!strtotime($_date)) throw new Exception('Invalid date format.');
+    if (!strtotime($_date)) throw new Exception('Invalid date.');
     return date('m/y', strtotime($_date));
   }
   

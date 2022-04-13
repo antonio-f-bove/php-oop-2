@@ -6,10 +6,13 @@ class User {
 
   public $name;
   public $lastname;
+  public $id;
 
   protected $payment_methods = [];
   protected $discount = 0;
   protected $isRegistered = false;
+
+  private static $count = 0;
 
   function __construct($_name, $_lastname, $_cc = null) {
     $this->name = $_name;
@@ -22,6 +25,9 @@ class User {
     } catch (Exception $e) {
       echo "There has been a problem while adding this payment method: {$e->getMessage()}<br>";
     }
+
+    self::$count++;
+    $this->id = self::$count;
   }
 
   public function getFullName() {

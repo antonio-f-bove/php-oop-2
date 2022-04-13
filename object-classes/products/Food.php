@@ -13,5 +13,6 @@ class Food extends Product {
     
     $this->exp_date = $this->checkDateFormat($_exp_date);
     $this->weight = $_weight;
+    $this->type = lcfirst(__CLASS__);
   }
 }
