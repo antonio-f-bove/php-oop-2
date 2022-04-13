@@ -20,7 +20,7 @@ class User {
       $this->addPaymentMethod($_cc);
       // echo "Credit Card successfully added to Payment Methods.";
     } catch (Exception $e) {
-      echo "There has been a problem: {$e->getMessage()}<br>";
+      echo "There has been a problem while adding this payment method: {$e->getMessage()}<br>";
     }
   }
 
@@ -33,6 +33,7 @@ class User {
     
     if (is_null($_cred_card)) throw new Exception('Credit Card not found (is NULL).');
     if (!is_a($_cred_card, 'CreditCard')) throw new Exception(('Invalid Credit Card type.'));
+    if(!$_cred_card->isValid()) throw new Exception('Credit card expired');
 
     $this->payment_methods[] = $_cred_card;
   }
@@ -50,8 +51,3 @@ class User {
   }
 
 }
-
-$cc = new CreditCard(1234123456785678, '01 21');
-$user = new User('anto', 'bove', $cc);
-
-echo $cc->isValid();
