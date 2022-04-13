@@ -50,4 +50,8 @@ class User {
     if ($this->isRegistered) $this->discount = 20;
   }
 
+  public function getDiscount() {
+    return $this->discount;
+  }
+
 }
