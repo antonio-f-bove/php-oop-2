@@ -28,6 +28,8 @@ $cart = new Cart($user);
 $cart->addToCart($crocchi);
 $cart->addToCart($crocchi2);
 $cart->addToCart($crocchette);
+$cart->addToCart($frontline);
+
 var_dump($cart);
 var_dump($cart->items);
 

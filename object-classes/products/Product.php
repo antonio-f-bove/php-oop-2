@@ -58,8 +58,26 @@ trait canExpire {
   }
 }
 
-trait medical {
+trait seasonal {
+  public $period_of_use = [
+    'start' => '',
+    'end' => ''
+  ];
 
+  private function setPeriodOfUse($_start, $_end) {
+    // TODO month format check ('M')
+    $this->period_of_use['start'] = $_start;
+    $this->period_of_use['end'] = $_end;
+  }
+
+  public function isAvailable() {
+    // check stock
+
+    // period related availability
+    extract($this->period_of_use);
+    if (date('M') < $start || date('M') > $end) return false;
+    return true;    
+  }
 }
 
 // TODO make new Product sub classes & traits
