@@ -14,7 +14,7 @@ class Cart {
 
   public function addToCart($_prod) {
     if (!is_a($_prod, 'Product')) throw new Exception('Invalid product type.');
-    // TODO check availability
+    if (!$_prod->isAvailable()) throw new Exception('Unavailable product');
 
     $this->items[$_prod->prod_id][] = $_prod;
     $this->tot_price += $_prod->price;

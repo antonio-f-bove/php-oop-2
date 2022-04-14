@@ -29,6 +29,11 @@ abstract class Product {
     $this->unique_id = self::$count;
   }
 
+  public function isAvailable() {
+    // check stock
+    return true;
+  }
+
   public function setDescription(string $_desc) {
     // TODO controlli sulle descrizioni?
     $this->description = $_desc;
