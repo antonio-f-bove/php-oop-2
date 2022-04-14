@@ -16,15 +16,21 @@ try {
 }
 var_dump($user);
 
-$crocchi = new Food('CanCrocchi', 'Can', 19.99, 'nov 12 2022', 1000);
-$crocchi = new Food('CanCrocchi', 'Can', 19.99, 'nov 12 2022', 1000);
-$crocchette = new Food('miam', 'GATT', 99.99, 'jan 2020', 10000);
-$crocchi2 = new Food('CanCrocchi', 'Can', 19.99, 'nov 12 2022', 1000);
+$crocchi = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
+$crocchi = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
+$crocchette = new Food('miam', 'GATT', 99.99, 776, 'jan 2020', 10000);
+$crocchi2 = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
 
 var_dump($crocchette);
 
-$cart = new Cart($user->id);
+$cart = new Cart($user);
 $cart->addToCart($crocchi);
 $cart->addToCart($crocchi2);
 $cart->addToCart($crocchette);
 var_dump($cart);
+var_dump($cart->items);
+
+$user->register();
+$order = $cart->makeIntoOrder();
+
+var_dump($order);

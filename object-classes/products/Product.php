@@ -1,7 +1,7 @@
 <?php
 abstract class Product {
 
-  public $id;
+  public $unique_id;
   public $name;
   public $brand;
   public $type;
@@ -9,7 +9,7 @@ abstract class Product {
 
   public $species = []; // TODO for what species of animal?
   public $description;
-  
+
   private static $count = 0;
 
   function __construct($_name, $_brand, $_price)
@@ -18,22 +18,21 @@ abstract class Product {
     $this->brand = $_brand;
     $this->price = $_price;
     
-    // soluzione per generare id incrementale ad ogni 
+    // soluzione per generare unique_id incrementale ad ogni 
     // instanziazione di un prodotto
     self::$count++;
-    $this->id = self::$count;
-  }
-
-  function __destruct()
-  {
-    // TODO implementare un catalogo
-    // $this->addToCatalog();
+    $this->unique_id = self::$count;
   }
 
   public function setDescription(string $_desc) {
-    // TODO controlli?
+    // TODO controlli sulle descrizioni?
     $this->description = $_desc;
   }
+
+  // TODO catalogo?
+  // public static $catalog = [];
+  // public static function addToCatalog() {
+  // }
 
 }
 
@@ -53,3 +52,5 @@ trait canExpire {
     return date('m/y', $timestamp);
   }
 }
+
+// TODO make new Product sub classes & traits

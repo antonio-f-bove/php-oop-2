@@ -1,23 +1,27 @@
 <?php
 
+require_once __DIR__ . '/Order.php';
+
 class Cart {
-  public $client_id;
-  public $items = []; // 'product->id' => quantity
+  public $client;
+  public $items = []; // '$prod->prod_id' -> [prod1, prod2...] per raggruppare i prodotti identici
   public $tot_price = 0;
 
-  function __construct($_id)
+  function __construct($_user)
   {
-    $this->client_id = $_id;
+    $this->client = $_user;
   }
 
   public function addToCart($_prod) {
     if (!is_a($_prod, 'Product')) throw new Exception('Invalid product type.');
 
-    if (!array_key_exists($_prod->id, $this->items)) {
-      $this->items[$_prod->id] = 1;
-    } else {
-      $this->items[$_prod->id]++;
-    }
+    $this->items[$_prod->prod_id][] = $_prod;
     $this->tot_price += $_prod->price;
+  }
+
+  public function makeIntoOrder() {
+    if (!$this->tot_price) throw new Exception('Empty cart');
+
+    return new Order($this);
   }
 }

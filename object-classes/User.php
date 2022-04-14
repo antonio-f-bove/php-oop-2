@@ -4,9 +4,10 @@ require_once __DIR__ . '/CreditCard.php';
 
 class User {
 
+  public $id;
   public $name;
   public $lastname;
-  public $id;
+  public $address; // TODO $address relative methods
 
   protected $payment_methods = [];
   protected $discount = 0;
@@ -44,6 +45,16 @@ class User {
     $this->payment_methods[] = $_cred_card;
   }
 
+  public function modPaymentMethod($_cred_card) {
+
+    $index = array_search($_cred_card, $this->payment_methods);
+
+    if (!$index) throw new Exception('Payment method not found.');
+     
+    // send info to front end, receive mods
+    $this->payment_methods[$index] = $_cred_card; // quella modificata
+  }
+
   public function register() {
     // user can only register if a payment method has been confirmed
     if (!$this->payment_methods) throw new Exception('You need a payment method to be able to register.');
@@ -53,7 +64,7 @@ class User {
   }
 
   protected function setDiscount() {
-    if ($this->isRegistered) $this->discount = 20;
+    if ($this->isRegistered) $this->discount = .8; // => 20% di sconto
   }
 
   public function getDiscount() {
