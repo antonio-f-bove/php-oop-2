@@ -12,8 +12,6 @@ abstract class Product {
   public $species = []; // TODO for what species of animal?
   public $description;
 
-  public $status = 'available';
-
   private static $count = 0;
 
   function __construct($_name, $_brand, $_price, $_prod_id)
@@ -78,9 +76,10 @@ trait seasonal {
   public function isAvailable() {
     // check stock
 
+    // TODO fix availibility test
     // period related availability
     extract($this->period_of_use);
-    if (date('M') < $start || date('M') > $end) return false;
+    if (date('M') <= $start || date('M') >= $end) return false;
     return true;    
   }
 }

@@ -68,7 +68,7 @@ class User {
   }
 
   public function getDiscount() {
-    return  1 - $this->discount * 100;
+    return  (1 - $this->discount) * 100;
   }
 
 }
