@@ -20,6 +20,7 @@ $crocchi = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
 $crocchi = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
 $crocchette = new Food('miam', 'GATT', 99.99, 776, 'jan 2020', 10000);
 $crocchi2 = new Food('CanCrocchi', 'Can', 19.99, 123, 'nov 12 2022', 1000);
+$frontline = new Pesticide('Frontline', 'FRONT', 50, 554, 6, 'apr', 'sep');
 
 var_dump($crocchette);
 

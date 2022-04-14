@@ -2,6 +2,8 @@
 abstract class Product {
 
   public $unique_id;
+  public $prod_id;
+  
   public $name;
   public $brand;
   public $type;
@@ -10,13 +12,16 @@ abstract class Product {
   public $species = []; // TODO for what species of animal?
   public $description;
 
+  public $status = 'available';
+
   private static $count = 0;
 
-  function __construct($_name, $_brand, $_price)
+  function __construct($_name, $_brand, $_price, $_prod_id)
   {
     $this->name = $_name;
     $this->brand = $_brand;
     $this->price = $_price;
+    $this->prod_id = $_prod_id;
     
     // soluzione per generare unique_id incrementale ad ogni 
     // instanziazione di un prodotto
@@ -51,6 +56,10 @@ trait canExpire {
     if (!$timestamp) throw new Exception('Invalid date input.');
     return date('m/y', $timestamp);
   }
+}
+
+trait medical {
+
 }
 
 // TODO make new Product sub classes & traits

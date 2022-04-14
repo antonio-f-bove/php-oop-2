@@ -6,13 +6,11 @@ class Food extends Product {
 
   use canExpire;
 
-  public $prod_id;
   public $weight;
 
   function __construct($_name, $_brand, $_price, $_prod_id, $_exp_date, $_weight)  {
-    parent::__construct($_name, $_brand, $_price);
+    parent::__construct($_name, $_brand, $_price, $_prod_id);
     
-    $this->prod_id = $_prod_id;
     $this->exp_date = $this->checkDateFormat($_exp_date);
     $this->weight = $_weight;
     $this->type = lcfirst(__CLASS__);
